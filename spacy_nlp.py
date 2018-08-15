@@ -104,7 +104,7 @@ def sentencewalk(sentence, nlp, lexmap, phonmap, phonlookup, t, p, nwalks):
     for i, word in enumerate(sentence):
         if word in stop_words:
             arr.append(donothing(word))
-        elif i % 2 == 0:
+        elif i % 1 == 0:
             arr.append(semanticwalk(nlp, lexmap, t, current=word))
         else:
             arr.append(phonwalk(phonlookup, phonmap, p, current=word))

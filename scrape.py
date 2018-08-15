@@ -21,7 +21,7 @@ N_ECHO_WALKS = 3
 N_GOOGLE_IMAGES = 100
 N_GIFS = 10
 
-TOGGLE_NLP = False
+TOGGLE_NLP = True
 TOGGLE_SAVE = True
 
 if TOGGLE_NLP:
@@ -34,7 +34,7 @@ def scrape_line(query, dir_name):
     if not os.path.isdir(dir_name):
         os.makedirs(dir_name)
     GoogleScraper(N_GOOGLE_IMAGES).scrape(query, dir_name)
-    # GifScraper(N_GIFS).scrape(query, dir_name)
+    GifScraper(N_GIFS).scrape(query, dir_name)
 
 #
 # def robot_speech_echoes(speech_echoes_arr):
@@ -50,11 +50,14 @@ def scrape_line(query, dir_name):
 def run(line):
     line = line.rstrip(string.punctuation).strip().lower()
     dir_str = make_url_str(line)
-    dir_name = "../images/"+dir_str
+    dir_name = "./images/"+dir_str
     scrape_line(line, dir_name)
 
-run("energy star")
-# if TOGGLE_NLP:
-#     time.sleep(ROBOT_SPEECH_ECHO_DELAY)
-#     speech_echoes_arr = spacy_nlp.sentencewalk(line, *nlp_args, N_ECHO_WALKS)
+line = "energy star refrigerator"
+run(line)
+if TOGGLE_NLP:
+     speech_echoes_arr = spacy_nlp.sentencewalk(line, *nlp_args, N_ECHO_WALKS)
+     print("performing echoes on ", speech_echoes_arr)
+     for line in speech_echoes_arr:
+         run(line)
 

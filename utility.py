@@ -30,8 +30,6 @@ def save_gif(url, fname):
 def geturl(url,folder_name, i, ext):
     if ext:
         try:
-            print("ok")
-
             if ext.count("?") > 0:
                 ext = ext[:ext.index('?')]
                 print('truncate ext', ext)
